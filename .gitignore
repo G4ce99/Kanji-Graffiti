@@ -27,8 +27,7 @@
 .vs/
 
 # I ADDED THIS -- GEORGE
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 
 # Gradle cache directory
 .gradle/
