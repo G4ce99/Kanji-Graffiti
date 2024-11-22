@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - SprayCan
+  - Wall
   layers:
   - Default
   - TransparentFX

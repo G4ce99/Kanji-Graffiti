@@ -29,7 +29,8 @@ public class SprayCan : MonoBehaviour
         sprayClipStartTime = 0.18f;
         sprayClipEndTime = 0.51f;
 
-        prevPos = wall.transform.position; 
+        prevPos = wall.transform.position; //Initializes previous paint dot to be at wall
+        prevPos.z = -0.05f; 
         timer = 0;
         particleSystem = transform.Find("SprayEffect").GetComponent<ParticleSystem>();
     }
@@ -49,7 +50,7 @@ public class SprayCan : MonoBehaviour
             Vector3 direction = particleSystem.transform.right;
             if (Physics.Raycast(origin, direction, out hit, 100f)) {
                 GameObject hitObject = hit.collider.gameObject;
-                if (hitObject.CompareTag("Wall")) //Paints only on specified wall
+                if (hitObject.CompareTag("Wall") || hitObject.CompareTag("Paint")) //Paints only on specified wall
                 {
             //
                     Vector3 paintLocation = hit.point;
