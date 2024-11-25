@@ -47,7 +47,7 @@ public class SprayCan : MonoBehaviour
             // From Gun.cs for lab:
             RaycastHit hit;
             Vector3 origin = particleSystem.transform.position;
-            Vector3 direction = particleSystem.transform.right;
+            Vector3 direction = particleSystem.transform.forward;
             if (Physics.Raycast(origin, direction, out hit, 100f)) {
                 GameObject hitObject = hit.collider.gameObject;
                 if (hitObject.CompareTag("Wall") || hitObject.CompareTag("Paint")) //Paints only on specified wall
