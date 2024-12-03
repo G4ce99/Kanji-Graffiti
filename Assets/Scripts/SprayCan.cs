@@ -54,9 +54,10 @@ public class SprayCan : MonoBehaviour
                 {
             //
                     Vector3 paintLocation = hit.point;
-                    paintLocation.z = -0.05f; //Makes planes slightly infront of wall, change if on diff orientation
-                    GameObject paint = Instantiate(paintPrefab, paintLocation, this.transform.rotation);
-
+                    paintLocation.z -= 0.51f; //Makes planes slightly infront of wall, change if on diff orientation
+                    paintLocation.y += 0.1f;
+                    GameObject paint = Instantiate(paintPrefab, paintLocation, Quaternion.Euler(-90, 0, 0));
+                    //this.transform.rotation
                     float disBetween = Vector3.Distance(paintLocation, prevPos);
                     if (disBetween > minDis && timer < maxTime) {
                         FillIn(prevPos, paintLocation, disBetween);
