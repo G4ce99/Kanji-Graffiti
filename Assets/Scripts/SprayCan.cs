@@ -47,15 +47,14 @@ public class SprayCan : MonoBehaviour
             // From Gun.cs for lab:
             RaycastHit hit;
             Vector3 origin = particleSystem.transform.position;
-            Vector3 direction = -1 * particleSystem.transform.right;
+            Vector3 direction = particleSystem.transform.forward;
             if (Physics.Raycast(origin, direction, out hit, 100f)) {
-                Debug.Log("Raycast hit: " + hit.collider.name);
                 GameObject hitObject = hit.collider.gameObject;
-                if (hitObject.CompareTag("Wall")) //|| hitObject.CompareTag("Paint")) //Paints only on specified wall
+                if (hitObject.CompareTag("Wall")|| hitObject.CompareTag("Paint")) //|| hitObject.CompareTag("Paint")) //Paints only on specified wall
                 {
             //
                     Vector3 paintLocation = hit.point;
-                    paintLocation.z -= 0.51f; //Makes planes slightly infront of wall, change if on diff orientation
+                    paintLocation.z -= 0.01f; //Makes planes slightly infront of wall, change if on diff orientation
                     paintLocation.y += 0.1f;
                     GameObject paint = Instantiate(paintPrefab, paintLocation, Quaternion.Euler(-90, 0, 0));
                     //this.transform.rotation
