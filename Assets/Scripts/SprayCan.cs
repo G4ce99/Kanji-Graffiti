@@ -14,6 +14,7 @@ public class SprayCan : MonoBehaviour
 
     public GameObject paintPrefab;
     public GameObject wall;
+    public GameObject paintParent;
     private ParticleSystem particleSystem;
     private Vector3 prevPos;
     private float minDis = 1; //Distance btw paint does before need to fill in
@@ -70,7 +71,7 @@ public class SprayCan : MonoBehaviour
                     Vector3 paintLocation = hit.point;
                     paintLocation.z -= 0.01f; //Makes planes slightly infront of wall, change if on diff orientation
                     paintLocation.y += 0.1f;
-                    GameObject paint = Instantiate(paintPrefab, paintLocation, Quaternion.Euler(-90, 0, 0));
+                    GameObject paint = Instantiate(paintPrefab, paintLocation, Quaternion.Euler(-90, 0, 0), paintParent.transform);
                     //this.transform.rotation
                     float disBetween = Vector3.Distance(paintLocation, prevPos);
                     if (disBetween > minDis && timer < maxTime) {
@@ -114,7 +115,7 @@ public class SprayCan : MonoBehaviour
         for (float i = 0; i < dist; i+=0.2f) {
             loc.x += direction.x * 0.2f;
             loc.y += direction.y * 0.2f;
-            GameObject paint = Instantiate(paintPrefab, loc, this.transform.rotation);
+            GameObject paint = Instantiate(paintPrefab, loc, this.transform.rotation, paintParent.transform);
         }
     }
 }

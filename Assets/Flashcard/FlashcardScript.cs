@@ -25,4 +25,11 @@ public class FlashcardController : MonoBehaviour
     {
         flashcardImage.sprite = flashcards[currentCardIndex];
     }
+
+    public void clearPaint() {
+        GameObject paintParent = GameObject.Find("Paint Parent");
+        for (int i = paintParent.transform.childCount - 1; i >= 0; i--) {
+            Destroy(paintParent.transform.GetChild(i).gameObject); 
+        }
+    }
 }
