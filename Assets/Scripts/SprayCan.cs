@@ -20,6 +20,10 @@ public class SprayCan : MonoBehaviour
     private int maxTime = 5; //Only fill in if dots are in short succession
     private int timer; //How long btw dots
 
+    private Vector3 initialPosition; //Used to reset if they drop the spray can
+    private Quaternion initialRotation; //Used to reset if they drop the spray can
+    private Rigidbody Rigidbody;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -33,10 +37,20 @@ public class SprayCan : MonoBehaviour
         prevPos.z = -0.05f; 
         timer = 0;
         particleSystem = transform.Find("SprayEffect").GetComponent<ParticleSystem>();
+
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+        Rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (transform.position.y <= 0.01f) {
+            // Dropped the can, reset so game continues
+            transform.position = initialPosition;
+            transform.rotation = initialRotation;
+            Rigidbody.velocity = Vector3.zero;
+        }
         if (isSpraying) {
             if (audioSource.time > sprayClipEndTime) {
                 audioSource.time = sprayClipStartTime;
